@@ -1,0 +1,53 @@
+# LaTeX 编译产生的文件
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.xdv
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# 输出目录
+build/
+out/
+
+# 排除所有 tex 源文件，只保留 base 模板
+src/internship/
+src/postgraduate/
+
+# 排除所有图片资源
+assets/
+
+# IDE 配置文件
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 字体文件（如果包含敏感或版权内容）
+fonts/zh_CN-Adobe/
+
+# 临时文件
+*.tmp
+*.bak
+*.backup
+
+# 其他敏感信息
+# 根据需要添加具体的敏感文件或目录
