@@ -1,0 +1,125 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+
+\documentclass{../../styles/resume}
+% 加载 fontspec 包以配置 FontAwesome 字体
+\newfontfamily\FA[Path=../../assets/fonts/fontawesome/opentype/]{FontAwesome.otf}
+\usepackage{../../styles/zh_CN-Adobefonts_external}
+\usepackage{../../styles/linespacing_fix}
+\usepackage{indentfirst}
+\usepackage{cite}
+
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx} % 确保 tikz 包已加载
+
+% 设置行间距
+\setstretch{1.2}
+
+\begin{document}
+
+\pagenumbering{gobble}
+% 强制覆盖 resume.cls 的边距
+\newgeometry{
+  a4paper,
+  left=0.7in,
+  right=0.7in,
+  top=0.4in,
+  bottom=0in,
+  nohead
+}
+\begin{center}
+  \begin{minipage}{\textwidth}
+    \centering
+    \name{孟高翔}
+    % \vspace{0.1em}
+    \basicInfo{
+      \email{1514190951@qq.com} \textperiodcentered\ 
+      \phone{(+86) 136-7557-3771}
+    }
+    \basicInfo{
+      {男 | 安徽泗县 | 中共党员}
+    }
+  \end{minipage}
+\end{center}
+
+\begin{tikzpicture}[remember picture, overlay] 
+\node[anchor=north east, inner sep=0pt] at ([xshift=-2.5cm, yshift=-0.7cm]current page.north east) { 
+\includegraphics[width=1in]{../../assets/images/photo.jpg} }; 
+\end{tikzpicture}
+
+
+%--------------------------------------
+\section{\faGraduationCap\ 教育背景}
+% \datedline{\textbf{武汉大学（双一流A类，985高校）|计算机学院|软件工程专业}}{\textit{硕士}\quad \textit{2026.09 -- 2028.06}}
+
+\datedsubsection{\textbf{武汉大学（双一流A类，985高校） | 计算机学院 | 软件工程专业}}
+{\qquad 本科}{\textit{2022.09 -- 2026.06}}
+
+\datedsubsection{\textbf{武汉大学（双一流A类，985高校） | 计算机学院 | 推荐免试}}
+{\qquad 硕士}{}
+\begin{itemize}[leftmargin=*, labelsep=0.5em]
+\item \textbf{本科绩点}：3.883\quad \textbf{专业排名}：16/218（7\%）
+\item \textbf{荣誉奖项}：校级乙等奖学金（前30\%）、三好学生、优秀学生干部、甲等新生奖学金
+\item \textbf{核心课程}：计算机网络（96），数据结构（92），操作系统（91），软件需求与建模（90），云计算（92）
+\item \textbf{竞赛奖项}：2024全国大学生数学建模省三，第九届ICT大赛编程赛省一，第十五届蓝桥杯省二
+\end{itemize}
+
+
+% Section: Project Experience
+\section{\faBriefcase\ 项目经历}
+
+% Project 1: Star-SaaS Short Link
+\datedsubsection{\textbf{极光Aurora-SaaS短链接}}{}{个人项目}
+\role{后端开发}{SpringBoot, SpringCloudAlibaba, RocketMQ, ShardingSphere, Redis, MySQL, Sentinel}
+\begin{itemize}[leftmargin=*, labelsep=0.5em]
+  \item \textbf{项目介绍}：SaaS短链接系统，提供高效、安全、可靠的短链接管理平台，简化长链接的管理与分享过程，并提供深入的分析与跟踪功能，助力用户灵活管理链接以提升营销效果。
+  % \item \textbf{线上地址}：\url{https://horiik} \quad \textbf{仓库地址}：\url{https://github.com}
+  \item \textbf{功能描述}：
+    \begin{itemize}
+      \item 采用布隆过滤器快速判断短链接是否存在，性能远超分布式锁结合数据库查询的方案。
+      \item 利用RocketMQ消息队列削峰填谷，支持海量访问场景下监控信息存储，解耦存储与访问。
+      \item 通过更新数据库后删除缓存的策略，确保缓存与数据库之间的数据一致性。
+      \item 基于Redis实现消息队列消费的幂等场景，保障消息在一定时间内仅被消费一次。
+      \item 结合读写锁与RocketMQ延迟队列，支持短链接分组在高并发场景下的数据修改。
+      \item 使用Sentinel实现接口QPS限流，触发限流规则后进行降级处理，确保系统稳定运行。
+    \end{itemize}
+\end{itemize}
+% Project 3: Axin-Star-Admin
+% Project: Aurora Online Judge
+\datedsubsection{\textbf{极光Aurora-Online Judge在线判题}}{}{个人项目}
+\role{后端开发}{Spring Cloud, RocketMQ, Docker, Java Security Manager, MySQL, Redis}
+\begin{itemize}[leftmargin=*, labelsep=0.5em]
+  \item \textbf{项目介绍}：基于Spring Cloud微服务的在线编程评测系统，支持管理员预设题目用例对用户提交的代码进行自动执行和评测，包含自主实现的代码沙箱模块，可作为独立服务供其他开发者调用。
+  % \item \textbf{线上地址}：\url{https://oj.horiik} \quad \textbf{仓库地址}：\url{https://github.com}
+  \item \textbf{功能描述}：
+    \begin{itemize}
+      \item 设计判题机模块架构，定义代码沙箱抽象接口及多种实现（如远程/第三方沙箱），通过静态工厂模式结合Spring配置实现动态调用。
+      \item 采用代理模式增强代码沙箱接口，统一实现调用前后日志记录，减少重复代码。
+      \item 使用策略模式封装不同语言的判题算法（如Java题目增加空间限制），提升系统可维护性。
+      \item 编写Java脚本自测代码沙箱模拟多种异常场景，结合黑白名单和字典树限制敏感操作提升安全性。
+      \item 利用Docker隔离用户代码，通过Docker Java库创建容器执行代码并通过tty传参交互，使运行安全。
+      \item 集成Java安全管理器和自定义Security Manager，对用户代码进行权限控制，禁用高危权限。
+    \end{itemize}
+\end{itemize}
+
+%--------------------------------------
+% 定义其他信息部分
+\section{\faInfo\ 其他信息}
+\begin{itemize}
+  \item \textbf{英语水平}：雅思6.5、CET-4、CET-6
+  \item \textbf{专业技能}：
+    \begin{itemize}
+      \item 熟悉Java（集合类、安全管理器、JVM参数），熟悉C++、Go、TypeScript、Python。 % 修改：合并语言技能，突出Java
+      \item 熟练SpringBoot、Spring Cloud Alibaba（Nacos、OpenFeign、Gateway），实现微服务改造与全局鉴权。 % 修改：合并微服务技术，突出核心功能
+      \item 掌握\textbf{MySQL}库表设计与索引优化，熟悉Redis、RocketMQ、RabbitMQ等中间件。 % 修改：合并数据库与中间件，突出优化经验
+      \item 熟悉多种设计模式（策略、工厂、代理），应用于高并发与可维护性场景。 % 修改：突出设计模式应用场景
+      \item 熟练使用Docker、Kubernetes、Git、Maven，实现容器化部署与项目管理。 % 修改：合并工具类技能，突出部署能力
+    \end{itemize}
+    \item \textbf{兴趣爱好}：体育竞赛（院运会篮球赛铜牌、排球赛第五名）、篮球、游泳
+\end{itemize}
+
+\end{document}

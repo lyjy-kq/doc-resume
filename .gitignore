@@ -19,7 +19,6 @@
 *.vrb
 
 # 输出目录
-build/
 out/
 
 # 排除所有 tex 源文件，只保留 base 模板
